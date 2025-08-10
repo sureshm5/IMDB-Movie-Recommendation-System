@@ -43,16 +43,16 @@ An interactive **Streamlit-based recommendation system** that suggests movies ba
 nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner', 'tagger'])
 ```
 
-#### We disable:
-
-parser → No need for dependency parsing (sentence structure), saves processing time.
-
-ner → Named Entity Recognition is not required for similarity.
-
-tagger → Part-of-speech tagging is unnecessary for our goal.
-
-#### ⚡ Why?
-Our task only needs tokenization + lemmatization + stopword removal, so disabling extra pipeline components speeds up processing significantly.
+#### In SpaCy, these components are part of the default NLP pipeline that should be disabled for our project:
+1.parser 🧩
+What it does: Performs dependency parsing — determines grammatical relationships between words (subject, object, modifiers, etc.).
+Why we disable it: We don't need sentence structure analysis for simple text similarity. Disabling it saves processing time.
+2.ner 🏷️
+What it does: Named Entity Recognition — identifies real-world entities like names (Tom Hanks), dates (2024), places (New York).
+Why we disable it: Entity extraction is not used for our similarity calculation, so disabling it improves speed.
+3.tagger 📝
+What it does: Assigns Part-of-Speech tags (noun, verb, adjective, etc.) to each token.
+Why we disable it: We only need tokenization, lemmatization, and stopword removal — POS tags are unnecessary for our goal.
 
 ### 🔄 Vectorization:
 TF-IDF Vectorization of cleaned movie plots
